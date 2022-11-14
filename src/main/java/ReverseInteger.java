@@ -52,6 +52,35 @@ public class ReverseInteger {
         return (int) reverse;
     }
 
+    public int IntegerToString(int x){
+
+        int negative = x;
+        if(x < 0){
+            x = x*(-1);
+        }
+
+        if(x >= Integer.MAX_VALUE || x <= Integer.MIN_VALUE){
+            return 0;
+        }
+
+        String numberString = String.valueOf(x);
+        StringBuilder reverse = new StringBuilder();
+        while(!numberString.equals("")){
+            reverse.insert(0, numberString.charAt(0));
+            numberString = numberString.substring(1);
+        }
+
+        if (Long.parseLong(reverse.toString()) >= Integer.MAX_VALUE){
+            return 0;
+        }
+
+        if (negative < 0){
+            return Integer.parseInt(reverse.toString())*(-1);
+        }
+
+        return Integer.parseInt(reverse.toString());
+    }
+
     public static void main(String[] args) {
         ReverseInteger reverseInteger = new ReverseInteger();
 
@@ -59,6 +88,13 @@ public class ReverseInteger {
         System.out.println(reverseInteger.reverse(Integer.MAX_VALUE));
         System.out.println(reverseInteger.reverse(Integer.MIN_VALUE));
         System.out.println(reverseInteger.reverse(2345455));
+
+        System.out.println(reverseInteger.IntegerToString(10));
+        System.out.println(reverseInteger.IntegerToString(Integer.MAX_VALUE));
+        System.out.println(reverseInteger.IntegerToString(Integer.MIN_VALUE));
+        System.out.println(reverseInteger.IntegerToString(2345455));
+        System.out.println(reverseInteger.IntegerToString(-2345455));
+
 
 
     }
